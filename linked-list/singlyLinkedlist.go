@@ -62,13 +62,15 @@ func (sll *singlyLinkedList) InsertAtTail(data any) {
 
 // Adds a node at a specific position. replace data or append empty node.
 func (sll *singlyLinkedList) InsertAt(index int, data any) {
+	
 	counter := 0
-
+	
 	currentNode := sll.head
-
+	
 	for currentNode != nil {
 		if counter == index {
 			currentNode.data = data
+			sll.incrementCounter()
 			return
 		}
 
@@ -79,6 +81,7 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 	for counter <= index {
 		sll.tail.next = &Node{}
 		sll.tail = sll.tail.next
+		sll.incrementCounter()
 
 		if counter == index {
 			sll.tail.data = data
@@ -91,14 +94,16 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 
 // Inserts new data right after a specific existing value. if nothing match it do nothing just like u.
 func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
+	
 	targetNode := sll.Search(targetData)
-
+	
 	if targetNode == nil {
 		return
 	}
-
+	
 	if sll.tail == targetNode {
 		sll.InsertAtTail(data)
+		sll.incrementCounter()
 		return
 	}
 
@@ -107,6 +112,7 @@ func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
 		data: data,
 		next: tempNode,
 	}
+	sll.incrementCounter()
 }
 
 // // Inserts new data right after a specific existing value.
@@ -156,8 +162,25 @@ func (sll *singlyLinkedList) Delete(data any) (bool, any) {
 // // Removes a node based on its numerical position.
 // func (sll *singlyLinkedList) DeleteAt(index int)
 
-// // Keeps the first $n$ elements and deletes the rest.
-// func (sll *singlyLinkedList) Truncate(n int)
+// Keeps the first $n$ elements and deletes the rest.
+func (sll *singlyLinkedList) Truncate(n int) error {
+	if n == 0 {
+		return nil
+	}
+
+	if sll.Length() < n {
+		return fmt.Errorf("not enough elements in the linked list")
+	}
+
+	currentNode, err := sll.GetAt(n - 1)
+	if err != nil {
+		return err
+	}
+
+	sll.head = currentNode.next
+
+	return nil
+}
 
 // /*
 // 	Access & Search Methods ------------------------------------------------------------
@@ -179,11 +202,11 @@ func (sll *singlyLinkedList) GetTail() (any, error) {
 	return sll.tail.data, nil
 }
 
-// get an element of an given index and a bool status that the index exist or not
-func (sll *singlyLinkedList) GetAt(index int) (bool, any) {
+// get an node by index
+func (sll *singlyLinkedList) GetAt(index int) (*Node, error) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
-		return false, 0
+		return nil, fmt.Errorf("linked list is empty")
 	}
 
 	currentNode := sll.head
@@ -191,13 +214,13 @@ func (sll *singlyLinkedList) GetAt(index int) (bool, any) {
 
 	for currentNode != nil && counter < sll.length {
 		if counter == index {
-			return true, currentNode.data
+			return currentNode, nil
 		}
 		currentNode = currentNode.next
 		counter++
 	}
 
-	return false, 0
+	return nil, fmt.Errorf("linked list is empty")
 }
 
 // // search an element on linked list and return boolean
