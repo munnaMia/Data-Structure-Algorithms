@@ -29,6 +29,12 @@ func (sll *singlyLinkedList) InsertAtHead(data any) {
 		next: sll.head,
 	}
 
+	if sll.IsEmpty() {
+		sll.head = newNode
+		sll.tail = newNode
+		return
+	}
+
 	sll.head = newNode
 }
 
