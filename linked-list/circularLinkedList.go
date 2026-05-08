@@ -113,3 +113,7 @@ func (cll *circularLinkedList) IsEmpty() bool {
 // /*
 // 	private helper methods --------------------------------------------------------------------
 // */
+
+func (cll *circularLinkedList) incrementCounter() {
+	cll.length++ // just increate by one
+}

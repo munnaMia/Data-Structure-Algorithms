@@ -113,3 +113,7 @@ func (dll *doublyLinkedList) IsEmpty() bool {
 // /*
 // 	private helper methods --------------------------------------------------------------------
 // */
+
+func (dll *doublyLinkedList) incrementCounter() {
+	dll.length++ // just increate by one
+}
