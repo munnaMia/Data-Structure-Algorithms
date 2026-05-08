@@ -66,7 +66,7 @@ func NewCircularLinkedList() *circularLinkedList {
 // func (cll *circularLinkedList) GetAt(index int) (bool, any)
 
 // // search an element on linked list and return boolean
-// func (cll *circularLinkedList) Search(data any) bool
+// func (cll *circularLinkedList) Search(data any)  *Node
 
 // // Returns a simple true/false if the value is in the list.
 // func (cll *circularLinkedList) Contains(data any) bool

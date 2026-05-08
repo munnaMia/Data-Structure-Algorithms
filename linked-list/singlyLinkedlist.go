@@ -67,7 +67,6 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 	currentNode := sll.head
 
 	for currentNode != nil {
-		fmt.Println("test")
 		if counter == index {
 			currentNode.data = data
 			return
@@ -90,8 +89,25 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 
 }
 
-// // Inserts new data right after a specific existing value.
-// func (sll *singlyLinkedList) InsertAfter(targetData any, newData any) error
+// Inserts new data right after a specific existing value. if nothing match it do nothing just like u.
+func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
+	targetNode := sll.Search(targetData)
+
+	if targetNode == nil {
+		return
+	}
+
+	if sll.tail == targetNode {
+		sll.InsertAtTail(data)
+		return
+	}
+
+	tempNode := targetNode.next
+	targetNode.next = &Node{
+		data: data,
+		next: tempNode,
+	}
+}
 
 // // Inserts new data right after a specific existing value.
 // func (sll *singlyLinkedList) InsertBefore(targetData any, newData any) error
@@ -185,22 +201,22 @@ func (sll *singlyLinkedList) GetAt(index int) (bool, any) {
 }
 
 // // search an element on linked list and return boolean
-func (sll *singlyLinkedList) Search(data any) bool {
+func (sll *singlyLinkedList) Search(data any) *Node {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
-		return false
+		return nil
 	}
 
 	currentNode := sll.head
 
 	for currentNode != nil {
 		if currentNode.data == data {
-			return true
+			return currentNode
 		}
 		currentNode = currentNode.next
 	}
 
-	return false
+	return nil
 }
 
 // // Returns a simple true/false if the value is in the list.
