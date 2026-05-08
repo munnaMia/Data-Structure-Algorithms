@@ -60,8 +60,35 @@ func (sll *singlyLinkedList) InsertAtTail(data any) {
 	sll.tail = sll.tail.next
 }
 
-// // Adds a node at a specific position.
-// func (sll *singlyLinkedList) InsertAt(index int, data any) error
+// Adds a node at a specific position. replace data or append empty node.
+func (sll *singlyLinkedList) InsertAt(index int, data any) {
+	counter := 0
+
+	currentNode := sll.head
+
+	for currentNode != nil {
+		fmt.Println("test")
+		if counter == index {
+			currentNode.data = data
+			return
+		}
+
+		currentNode = currentNode.next
+		counter++
+	}
+
+	for counter <= index {
+		sll.tail.next = &Node{}
+		sll.tail = sll.tail.next
+
+		if counter == index {
+			sll.tail.data = data
+			return
+		}
+		counter++
+	}
+
+}
 
 // // Inserts new data right after a specific existing value.
 // func (sll *singlyLinkedList) InsertAfter(targetData any, newData any) error
