@@ -1,5 +1,7 @@
 package linkedlist
 
+import "fmt"
+
 type doublyLinkedList struct {
 	head   *Node
 	tail   *Node
@@ -124,10 +126,22 @@ func (dll *doublyLinkedList) IsEmpty() bool {
 	return dll.head == nil
 }
 
-// // Print the single linked list
-// func (dll *doublyLinkedList) PrintList()
+// Print the single linked list
+func (dll *doublyLinkedList) PrintList() {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
 
-// // clear the whole linked list
+	currentNode := dll.head
+
+	for currentNode != nil {
+		fmt.Println("Data :", currentNode.data)
+		currentNode = currentNode.next
+	}
+}
+
+// clear the whole linked list
 // func (dll *doublyLinkedList) Clear()
 
 // /*
