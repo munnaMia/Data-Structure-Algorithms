@@ -1,6 +1,8 @@
 package linkedlist
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type doublyLinkedList struct {
 	head   *Node
@@ -94,8 +96,27 @@ func (dll *doublyLinkedList) GetTail() (*Node, error) {
 	return dll.tail, nil
 }
 
-// // get an element of an given index and a bool status that the index exist or not
-// func (dll *doublyLinkedList) GetAt(index int) (bool , any)
+// get an element of an given index and a bool status that the index exist or not
+func (dll *doublyLinkedList) GetAt(index int) (*Node, any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return nil, fmt.Errorf("linked list is empty")
+	}
+
+	currentNode := dll.head
+	counter := 0
+
+	for currentNode != nil && counter < dll.length {
+		if counter == index {
+			return currentNode, nil
+		}
+		currentNode = currentNode.next
+		counter++
+	}
+
+	return nil, fmt.Errorf("linked list is empty")
+
+}
 
 // // search an element on linked list and return boolean
 // func (dll *doublyLinkedList) Search(data any)  *Node
