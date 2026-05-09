@@ -224,7 +224,7 @@ func (sll *singlyLinkedList) GetAt(index int) (*Node, error) {
 }
 
 // // search an element on linked list and return boolean
-func (sll *singlyLinkedList) Search(data any)( *Node, error) {
+func (sll *singlyLinkedList) Search(data any) (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("linked list is empty")
 	}
@@ -241,8 +241,16 @@ func (sll *singlyLinkedList) Search(data any)( *Node, error) {
 	return nil, fmt.Errorf("element not found")
 }
 
-// // Returns a simple true/false if the value is in the list.
-// func (sll *singlyLinkedList) Contains(data any) bool
+// Returns a simple true/false if the value is in the list.
+func (sll *singlyLinkedList) Contains(data any) bool {
+	_, err := sll.Search(data)
+
+	if err != nil {
+		return false
+	}
+	
+	return true
+}
 
 /*
 	Transformation Methods ------------------------------------------------------------
