@@ -95,7 +95,7 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 // Inserts new data right after a specific existing value. if nothing match it do nothing just like u.
 func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
 
-	targetNode := sll.Search(targetData)
+	targetNode, _ := sll.Search(targetData)
 
 	if targetNode == nil {
 		return
@@ -224,22 +224,21 @@ func (sll *singlyLinkedList) GetAt(index int) (*Node, error) {
 }
 
 // // search an element on linked list and return boolean
-func (sll *singlyLinkedList) Search(data any) *Node {
+func (sll *singlyLinkedList) Search(data any)( *Node, error) {
 	if sll.IsEmpty() {
-		fmt.Println("Linked list is empty.")
-		return nil
+		return nil, fmt.Errorf("linked list is empty")
 	}
 
 	currentNode := sll.head
 
 	for currentNode != nil {
 		if currentNode.data == data {
-			return currentNode
+			return currentNode, nil
 		}
 		currentNode = currentNode.next
 	}
 
-	return nil
+	return nil, fmt.Errorf("element not found")
 }
 
 // // Returns a simple true/false if the value is in the list.

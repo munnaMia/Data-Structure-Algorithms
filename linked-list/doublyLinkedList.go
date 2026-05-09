@@ -118,8 +118,10 @@ func (dll *doublyLinkedList) GetAt(index int) (*Node, any) {
 
 }
 
-// // search an element on linked list and return boolean
-// func (dll *doublyLinkedList) Search(data any)  *Node
+// search an element on linked list and return boolean
+func (dll *doublyLinkedList) Search(data any)  *Node {
+	
+}
 
 // // Returns a simple true/false if the value is in the list.
 // func (dll *doublyLinkedList) Contains(data any) bool
