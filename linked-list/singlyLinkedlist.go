@@ -187,11 +187,11 @@ func (sll *singlyLinkedList) Truncate(n int) error {
 // */
 
 // show the head node value
-func (sll *singlyLinkedList) GetHead() (any, error) {
+func (sll *singlyLinkedList) GetHead() (*Node, error) {
 	if sll.IsEmpty() {
-		return 0, fmt.Errorf("Linked list is empty.")
+		return nil, fmt.Errorf("Linked list is empty.")
 	}
-	return sll.head.data, nil
+	return sll.head, nil
 }
 
 // show the tail node value

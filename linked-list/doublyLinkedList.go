@@ -78,8 +78,13 @@ func (dll *doublyLinkedList) InsertAtHead(data any) {
 // 	Access & Search Methods ------------------------------------------------------------
 // */
 
-// // show the head node value
-// func (dll *doublyLinkedList) GetHead() (any, error)
+// show the head node value
+func (dll *doublyLinkedList) GetHead() (*Node, error) {
+	if dll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return dll.head, nil
+}
 
 // // show the tail node value
 // func (dll *doublyLinkedList) GetTail() (any, error)
