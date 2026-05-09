@@ -195,11 +195,11 @@ func (sll *singlyLinkedList) GetHead() (*Node, error) {
 }
 
 // show the tail node value
-func (sll *singlyLinkedList) GetTail() (any, error) {
+func (sll *singlyLinkedList) GetTail() (*Node, error) {
 	if sll.IsEmpty() {
-		return 0, fmt.Errorf("Linked list is empty.")
+		return nil, fmt.Errorf("Linked list is empty.")
 	}
-	return sll.tail.data, nil
+	return sll.tail, nil
 }
 
 // get an node by index
