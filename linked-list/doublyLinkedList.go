@@ -109,8 +109,23 @@ func (dll *doublyLinkedList) InsertAtHead(data any) {
 // // Scans the list and removes nodes with repeating values
 // func (dll *doublyLinkedList) RemoveDuplicates()
 
-// // covert the linked list into slice
-// func (dll *doublyLinkedList) ToSlice() []any
+// covert the linked list into slice
+func (dll *doublyLinkedList) ToSlice() []any {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return []any{}
+	}
+
+	sllSlice := []any{}
+	currentNode := dll.head
+	for currentNode != nil {
+		sllSlice = append(sllSlice, currentNode.data)
+
+		currentNode = currentNode.next
+	}
+
+	return sllSlice
+}
 
 // /*
 // 	Metadata & Utility Methods ------------------------------------------------------------
