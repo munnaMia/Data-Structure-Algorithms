@@ -142,7 +142,10 @@ func (dll *doublyLinkedList) PrintList() {
 }
 
 // clear the whole linked list
-// func (dll *doublyLinkedList) Clear()
+func (dll *doublyLinkedList) Clear() {
+	dll.head = nil
+	dll.tail = nil
+}
 
 // /*
 // 	private helper methods --------------------------------------------------------------------
