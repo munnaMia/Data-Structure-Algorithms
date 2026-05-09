@@ -107,8 +107,11 @@ func (cll *circularLinkedList) IsEmpty() bool {
 // // Print the single linked list
 // func (cll *circularLinkedList) PrintList()
 
-// // clear the whole linked list
-// func (cll *circularLinkedList) Clear()
+// clear the whole linked list
+func (cll *circularLinkedList) Clear() {
+	cll.head = nil
+	cll.tail = nil
+}
 
 // /*
 // 	private helper methods --------------------------------------------------------------------
