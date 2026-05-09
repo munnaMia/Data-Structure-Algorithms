@@ -346,7 +346,8 @@ func (sll *singlyLinkedList) PrintList() {
 
 // clear the whole linked list
 func (sll *singlyLinkedList) Clear() {
-	sll.head = nil // unlink all nodes
+	sll.head = nil // unlink all nodes from head
+	sll.tail = nil // unlink all nodes from tail
 }
 
 /*
