@@ -18,14 +18,34 @@ func NewDoublyLinkedList() *doublyLinkedList {
 // 	Insertion ------------------------------------------------------------
 // */
 
-// // append element on the end on singly linked list
-// func (dll *doublyLinkedList) InsertAtHead(data any)
+// append element on the end on singly linked list
+func (dll *doublyLinkedList) InsertAtHead(data any) {
+	defer dll.incrementCounter()
+
+	// create a new node
+	newNode := &Node{
+		prev: nil,
+		data: data,
+		next: dll.head,
+	}
+
+	if dll.IsEmpty() {
+		dll.head = newNode
+		dll.tail = newNode
+		return
+	}
+
+	// previous head node prev pointer set to new node
+	dll.head.prev = newNode
+
+	dll.head = newNode
+}
 
 // // push element on the beginning
 // func (dll *doublyLinkedList) InsertAtTail(data any)
 
 // // Adds a node at a specific position.
-// func (dll *doublyLinkedList) InsertAt(index int, data any) 
+// func (dll *doublyLinkedList) InsertAt(index int, data any)
 
 // // Inserts new data right after a specific existing value.
 // func (dll *doublyLinkedList) InsertAfter(targetData any, newData any) error
