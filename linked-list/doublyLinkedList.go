@@ -119,8 +119,21 @@ func (dll *doublyLinkedList) GetAt(index int) (*Node, any) {
 }
 
 // search an element on linked list and return boolean
-func (dll *doublyLinkedList) Search(data any)  *Node {
-	
+func (dll *doublyLinkedList) Search(data any) (*Node , error){
+	if dll.IsEmpty() {
+		return nil, fmt.Errorf("linked list is empty")
+	}
+
+	currentNode := dll.head
+
+	for currentNode != nil {
+		if currentNode.data == data {
+			return currentNode, nil
+		}
+		currentNode = currentNode.next
+	}
+
+	return nil, fmt.Errorf("element not found")
 }
 
 // // Returns a simple true/false if the value is in the list.
