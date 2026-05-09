@@ -136,8 +136,16 @@ func (dll *doublyLinkedList) Search(data any) (*Node , error){
 	return nil, fmt.Errorf("element not found")
 }
 
-// // Returns a simple true/false if the value is in the list.
-// func (dll *doublyLinkedList) Contains(data any) bool
+// Returns a simple true/false if the value is in the list.
+func (dll *doublyLinkedList) Contains(data any) bool {
+	_, err := dll.Search(data)
+
+	if err != nil {
+		return false
+	}
+	
+	return true
+}
 
 // /*
 // 	Transformation Methods ------------------------------------------------------------
