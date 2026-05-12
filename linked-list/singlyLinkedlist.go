@@ -248,7 +248,7 @@ func (sll *singlyLinkedList) Contains(data any) bool {
 	if err != nil {
 		return false
 	}
-	
+
 	return true
 }
 
@@ -257,26 +257,22 @@ func (sll *singlyLinkedList) Contains(data any) bool {
 */
 
 // Replaces a specific value with a new one.
-func (sll *singlyLinkedList) Update(data, replace any) (bool, any) {
+func (sll *singlyLinkedList) Update(data, replace any) (*Node, error) {
 	if sll.IsEmpty() {
-		fmt.Println("Linked list is empty.")
-		return false, 0
+		return nil, fmt.Errorf("Linked list is empty.")
 	}
 
-	currentNode := sll.head
+	targetNode, err := sll.Search(data)
 
-	for currentNode != nil {
-		if currentNode.data == data {
-			oldData := currentNode.data
-			currentNode.data = replace // replace with new data.
-
-			return true, oldData
-		}
-
-		currentNode = currentNode.next
+	if err != nil {
+		return nil, err
 	}
 
-	return false, 0
+	oldData := targetNode
+
+	targetNode.data = replace
+
+	return oldData, nil
 }
 
 // reverse the linked list

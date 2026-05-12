@@ -119,7 +119,7 @@ func (dll *doublyLinkedList) GetAt(index int) (*Node, any) {
 }
 
 // search an element on linked list and return boolean
-func (dll *doublyLinkedList) Search(data any) (*Node , error){
+func (dll *doublyLinkedList) Search(data any) (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("linked list is empty")
 	}
@@ -143,7 +143,7 @@ func (dll *doublyLinkedList) Contains(data any) bool {
 	if err != nil {
 		return false
 	}
-	
+
 	return true
 }
 
@@ -151,8 +151,24 @@ func (dll *doublyLinkedList) Contains(data any) bool {
 // 	Transformation Methods ------------------------------------------------------------
 // */
 
-// // Replaces a specific value with a new one.
-// func (dll *doublyLinkedList) Update(data, replace any) (bool, any)
+// Replaces a specific value with a new one.
+func (dll *doublyLinkedList) Update(data, replace any) (*Node, error) {
+	if dll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+
+	targetNode, err := dll.Search(data)
+
+	if err != nil {
+		return nil, err
+	}
+
+	oldData := targetNode
+
+	targetNode.data = replace
+
+	return oldData, nil
+}
 
 // // reverse the linked list
 // func (dll *doublyLinkedList) Reverse()
