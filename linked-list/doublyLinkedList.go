@@ -22,7 +22,7 @@ func NewDoublyLinkedList() *doublyLinkedList {
 // 	Insertion ------------------------------------------------------------
 // */
 
-// append element on the end on singly linked list
+// append element on the beginning on singly linked list
 func (dll *doublyLinkedList) InsertAtHead(data any) {
 	defer dll.incrementCounter()
 
@@ -45,8 +45,28 @@ func (dll *doublyLinkedList) InsertAtHead(data any) {
 	dll.head = newNode
 }
 
-// // push element on the beginning
-// func (dll *doublyLinkedList) InsertAtTail(data any)
+// push element on the end
+ func (dll *doublyLinkedList) InsertAtTail(data any){
+	defer dll.incrementCounter()
+
+	if dll.IsEmpty() {
+		dll.head = &Node{
+			prev: nil,
+			data: data,
+			next: nil,
+		}
+		dll.tail = dll.head
+		return
+	}
+
+	dll.tail.next = &Node{
+		prev: dll.tail,
+		data: data,
+		next: nil,
+	}
+
+	dll.tail = dll.tail.next
+ }
 
 // // Adds a node at a specific position.
 // func (dll *doublyLinkedList) InsertAt(index int, data any)

@@ -20,7 +20,7 @@ func NewSinglyLinkedList() *singlyLinkedList {
 	Insertion ------------------------------------------------------------
 */
 
-// append element on the end on singly linked list
+// append element on the beginning on singly linked list
 func (sll *singlyLinkedList) InsertAtHead(data any) {
 	defer sll.incrementCounter()
 
@@ -38,7 +38,7 @@ func (sll *singlyLinkedList) InsertAtHead(data any) {
 	sll.head = newNode
 }
 
-// push element on the beginning
+// push element on the end
 func (sll *singlyLinkedList) InsertAtTail(data any) {
 	defer sll.incrementCounter()
 
