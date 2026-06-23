@@ -295,7 +295,9 @@ func (sll *singlyLinkedList) Reverse() {
 // func (sll *singlyLinkedList) Sort()
 
 // Scans the list and removes nodes with repeating values
-// func (sll *singlyLinkedList) RemoveDuplicates()
+func (sll *singlyLinkedList) RemoveDuplicates() {
+	fmt.Println(sll.loadMap())
+}
 
 // covert the linked list into slice
 func (sll *singlyLinkedList) ToSlice() []any {
@@ -354,6 +356,25 @@ func (sll *singlyLinkedList) Clear() {
 	private helper methods --------------------------------------------------------------------
 */
 
+// increment after eash insertion
 func (sll *singlyLinkedList) incrementCounter() {
 	sll.length++ // just increate by one
+}
+
+// load hashmap for ll.
+func (sll *singlyLinkedList) loadMap() map[any]int {
+	var NodeHash = make(map[any]int)
+
+	if sll.IsEmpty() {
+		return NodeHash
+	}
+
+	currentNode := sll.head
+
+	for currentNode != nil {
+		NodeHash[currentNode.data]++
+		currentNode = currentNode.next
+	}
+
+	return NodeHash
 }
