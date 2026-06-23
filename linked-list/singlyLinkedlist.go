@@ -296,7 +296,25 @@ func (sll *singlyLinkedList) Reverse() {
 
 // Scans the list and removes nodes with repeating values
 func (sll *singlyLinkedList) RemoveDuplicates() {
-	fmt.Println(sll.loadMap())
+	if sll.head == nil {
+		return
+	}
+
+	seen := make(map[any]bool)
+
+	current := sll.head
+	seen[current.data] = true
+
+	for current.next != nil {
+		if seen[current.next.data] {
+			current.next = current.next.next
+		} else {
+			seen[current.next.data] = true
+			current = current.next
+
+		}
+
+	}
 }
 
 // covert the linked list into slice
@@ -359,22 +377,4 @@ func (sll *singlyLinkedList) Clear() {
 // increment after eash insertion
 func (sll *singlyLinkedList) incrementCounter() {
 	sll.length++ // just increate by one
-}
-
-// load hashmap for ll.
-func (sll *singlyLinkedList) loadMap() map[any]int {
-	var NodeHash = make(map[any]int)
-
-	if sll.IsEmpty() {
-		return NodeHash
-	}
-
-	currentNode := sll.head
-
-	for currentNode != nil {
-		NodeHash[currentNode.data]++
-		currentNode = currentNode.next
-	}
-
-	return NodeHash
 }
