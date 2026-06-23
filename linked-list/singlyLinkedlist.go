@@ -62,7 +62,6 @@ func (sll *singlyLinkedList) InsertAtTail(data any) {
 
 // Adds a node at a specific position. replace data or append empty node.
 func (sll *singlyLinkedList) InsertAt(index int, data any) {
-
 	counter := 0
 
 	currentNode := sll.head
@@ -70,7 +69,6 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 	for currentNode != nil {
 		if counter == index {
 			currentNode.data = data
-			sll.incrementCounter()
 			return
 		}
 
@@ -89,7 +87,6 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 		}
 		counter++
 	}
-
 }
 
 // Inserts new data right after a specific existing value. if nothing match it do nothing just like u.
