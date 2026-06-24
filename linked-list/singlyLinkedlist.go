@@ -62,19 +62,44 @@ func (sll *singlyLinkedList) InsertAtTail(data any) {
 	sll.tail = sll.tail.next
 }
 
-// Adds a node at a specific position. replace data or append empty node.
+// Adds a node at a specific position or append empty node.
 func (sll *singlyLinkedList) InsertAt(index int, data any) {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
 	counter := 0
 
-	currentNode := sll.head
+	previous := sll.head
+	current := sll.head.next
 
-	for currentNode != nil {
+	// if the head match first
+	if index == 0 {
+		newNode := &Node{
+			next: sll.head,
+			data: data,
+		}
+		sll.head = newNode
+		return
+	}
+
+	counter++ // as first index already check and current point start with the secound element
+
+	for current != nil {
+
 		if counter == index {
-			currentNode.data = data
+			newNode := &Node{
+				next: current,
+				data: data,
+			}
+			previous.next = newNode
+			sll.incrementCounter()
 			return
 		}
 
-		currentNode = currentNode.next
+		previous = current
+		current = current.next
 		counter++
 	}
 
@@ -93,6 +118,10 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 
 // Inserts new data right after a specific existing value. if nothing match it do nothing just like u.
 func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
 
 	targetNode, _ := sll.Search(targetData)
 
@@ -482,9 +511,10 @@ func (sll *singlyLinkedList) Clear() {
 
 // increment after eash insertion
 func (sll *singlyLinkedList) incrementCounter() {
-	sll.length++ 
+	sll.length++
 }
+
 // decrement after eash deletation
 func (sll *singlyLinkedList) decrementCounter() {
-	sll.length-- 
+	sll.length--
 }
