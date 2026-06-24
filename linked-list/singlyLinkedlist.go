@@ -432,10 +432,11 @@ func (sll *singlyLinkedList) Reverse() {
 
 // Scans the list and removes nodes with repeating values
 func (sll *singlyLinkedList) RemoveDuplicates() {
-	if sll.head == nil {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
 		return
 	}
-
+	
 	seen := make(map[any]bool)
 
 	current := sll.head

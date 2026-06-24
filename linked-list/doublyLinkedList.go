@@ -465,8 +465,29 @@ func (dll *doublyLinkedList) Reverse() {
 	dll.tail = newTempLL.tail
 }
 
-// // Scans the list and removes nodes with repeating values
-// func (dll *doublyLinkedList) RemoveDuplicates()
+// Scans the list and removes nodes with repeating values
+func (dll *doublyLinkedList) RemoveDuplicates() {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+	
+	seen := make(map[any]bool)
+
+	current := dll.head
+	seen[current.data] = true
+
+	for current.next != nil {
+		if seen[current.next.data] {
+			current.next = current.next.next
+		} else {
+			seen[current.next.data] = true
+			current = current.next
+
+		}
+
+	}
+}
 
 // covert the linked list into slice
 func (dll *doublyLinkedList) ToSlice() []any {
