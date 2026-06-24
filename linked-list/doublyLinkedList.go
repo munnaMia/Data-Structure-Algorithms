@@ -120,8 +120,36 @@ func (dll *doublyLinkedList) InsertAt(index int, data any) {
 	}
 }
 
-// // Inserts new data right after a specific existing value.
-// func (dll *doublyLinkedList) InsertAfter(targetData any, newData any) error
+// Inserts new data right after a specific existing value.
+func (dll *doublyLinkedList) InsertAfter(targetData any, data any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	targetNode, _ := dll.Search(targetData)
+
+	if targetNode == nil {
+		return
+	}
+
+	// insert at tail
+	if dll.tail == targetNode {
+		dll.InsertAtTail(data)
+		dll.incrementCounter()
+		return
+	}
+
+	newNode := &Node{
+		prev: targetNode,
+		data: data,
+		next: targetNode.next,
+	}
+
+	targetNode.next = newNode
+
+	dll.incrementCounter()
+}
 
 // // Inserts new data right after a specific existing value.
 // func (dll *doublyLinkedList) InsertBefore(targetData any, newData any) error
