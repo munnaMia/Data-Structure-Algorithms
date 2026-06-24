@@ -112,8 +112,42 @@ func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
 	sll.incrementCounter()
 }
 
-// // Inserts new data right after a specific existing value.
-// func (sll *singlyLinkedList) InsertBefore(targetData any, newData any) error
+// Inserts new data right after a specific existing value.
+func (sll *singlyLinkedList) InsertBefore(targetData any, data any) {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	previous := sll.head
+	current := sll.head.next
+
+	// if the head match first
+	if previous.data == targetData {
+		sll.head = &Node{
+			data: data,
+			next: previous,
+		}
+		sll.incrementCounter()
+		return
+	}
+
+	for current != nil {
+		if current.data == data {
+			previous.next = &Node{
+				data: data,
+				next: current,
+			}
+			sll.incrementCounter()
+			return
+		}
+
+		// move the pointer
+		previous = current
+		current = current.next
+	}
+
+}
 
 // /*
 // 	Deletation ------------------------------------------------------------
@@ -132,6 +166,7 @@ func (sll *singlyLinkedList) Delete(data any) (bool, any) {
 	// if the head match first
 	if previous.data == data {
 		sll.head = sll.head.next
+		sll.decrementCounter()
 		return true, sll.head.data
 	}
 
@@ -139,7 +174,7 @@ func (sll *singlyLinkedList) Delete(data any) (bool, any) {
 		if current.data == data {
 			oldData := current.data
 			previous.next = current.next // unlink the match data
-
+			sll.decrementCounter()
 			return true, oldData
 		}
 		// move the pointer
@@ -377,4 +412,9 @@ func (sll *singlyLinkedList) Clear() {
 // increment after eash insertion
 func (sll *singlyLinkedList) incrementCounter() {
 	sll.length++ // just increate by one
+}
+
+// decrement after eash deletation
+func (sll *singlyLinkedList) decrementCounter() {
+	sll.length-- // just increate by one
 }
