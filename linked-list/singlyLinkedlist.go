@@ -185,8 +185,18 @@ func (sll *singlyLinkedList) Delete(data any) (bool, any) {
 	return false, 0
 }
 
-// // delete head node.
-// func (sll *singlyLinkedList) DeleteHead() (bool, any)
+// delete head node.
+func (sll *singlyLinkedList) DeleteHead() (bool, any) {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+
+	oldData := sll.head.data
+	sll.head = sll.head.next
+	sll.decrementCounter()
+	return true, oldData
+}
 
 // // delete tail node.
 // func (sll *singlyLinkedList) DeleteTail() (bool, any)
