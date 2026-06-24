@@ -1,6 +1,8 @@
 package linkedlist
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type singlyLinkedList struct {
 	head   *Node
@@ -230,8 +232,41 @@ func (sll *singlyLinkedList) DeleteTail() (bool, any) {
 	return false, 0
 }
 
-// // Removes a node based on its numerical position.
-// func (sll *singlyLinkedList) DeleteAt(index int)
+// Removes a node based on its numerical position.
+func (sll *singlyLinkedList) DeleteAt(index int) (bool, any) {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+
+	previous := sll.head
+	current := sll.head.next
+	currentIdx := 0
+
+	if index == 0 {
+		oldData := sll.head.data
+		sll.head = sll.head.next
+		sll.decrementCounter()
+		return true, oldData
+	}
+
+	currentIdx++
+
+	for current != nil {
+		if currentIdx == index {
+			oldData := current.data
+			previous.next = current.next
+			sll.decrementCounter()
+			return true, oldData
+		}
+		currentIdx++
+		// move the pointer
+		previous = current
+		current = current.next
+	}
+
+	return false, 0
+}
 
 // Keeps the first $n$ elements and deletes the rest.
 func (sll *singlyLinkedList) Truncate(n int) error {
