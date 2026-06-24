@@ -20,8 +20,8 @@ func NewCircularLinkedList() *circularLinkedList {
 // 	Insertion ------------------------------------------------------------
 // */
 
-// // append element on the end on singly linked list
-// func (cll *circularLinkedList) InsertAtHead(data any)
+// append element on the end on singly linked list
+func (cll *circularLinkedList) InsertAtHead(data any)
 
 // // push element on the beginning
 // func (cll *circularLinkedList) InsertAtTail(data any)
@@ -86,8 +86,27 @@ func NewCircularLinkedList() *circularLinkedList {
 // // Scans the list and removes nodes with repeating values
 // func (cll *circularLinkedList) RemoveDuplicates()
 
-// // covert the linked list into slice
-// func (cll *circularLinkedList) ToSlice() []any
+// covert the linked list into slice
+func (cll *circularLinkedList) ToSlice() []any {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return nil
+	}
+
+	current := cll.head
+	slc := make([]any, 0)
+
+	for {
+		slc = append(slc, current.data)
+		current = current.next
+
+		if current == cll.head {
+			break
+		}
+	}
+
+	return slc
+}
 
 // /*
 // 	Metadata & Utility Methods ------------------------------------------------------------
@@ -103,7 +122,7 @@ func (cll *circularLinkedList) IsEmpty() bool {
 	return cll.head == nil
 }
 
-// //  Print the single linked list
+// Print the single linked list
 func (cll *circularLinkedList) PrintList() {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
