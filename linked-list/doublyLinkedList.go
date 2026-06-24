@@ -482,7 +482,6 @@ func (dll *doublyLinkedList) RemoveDuplicates() {
 		} else {
 			seen[current.next.data] = true
 			current = current.next
-
 		}
 
 	}
