@@ -146,13 +146,42 @@ func (dll *doublyLinkedList) InsertAfter(targetData any, data any) {
 		next: targetNode.next,
 	}
 
+	targetNode.next.prev = newNode
 	targetNode.next = newNode
 
 	dll.incrementCounter()
 }
 
-// // Inserts new data right after a specific existing value.
-// func (dll *doublyLinkedList) InsertBefore(targetData any, newData any) error
+// Inserts new data right before a specific existing value.
+func (dll *doublyLinkedList) InsertBefore(targetData any, data any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	targetNode, _ := dll.Search(targetData)
+
+	if targetNode == nil {
+		return
+	}
+
+	// insert at head
+	if dll.head == targetNode {
+		dll.InsertAtHead(data)
+		dll.incrementCounter()
+		return
+	}
+
+	newNode := &Node{
+		prev: targetNode.prev,
+		data: data,
+		next: targetNode,
+	}
+
+	targetNode.prev.next = newNode
+	targetNode.prev = newNode
+	dll.incrementCounter()
+}
 
 // /*
 // 	Deletation ------------------------------------------------------------
