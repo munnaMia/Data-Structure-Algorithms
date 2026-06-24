@@ -1,5 +1,7 @@
 package linkedlist
 
+import "fmt"
+
 type circularLinkedList struct {
 	head   *Node
 	tail   *Node
@@ -25,7 +27,7 @@ func NewCircularLinkedList() *circularLinkedList {
 // func (cll *circularLinkedList) InsertAtTail(data any)
 
 // // Adds a node at a specific position.
-// func (cll *circularLinkedList) InsertAt(index int, data any) 
+// func (cll *circularLinkedList) InsertAt(index int, data any)
 
 // // Inserts new data right after a specific existing value.
 // func (cll *circularLinkedList) InsertAfter(targetData any, newData any) error
@@ -101,8 +103,24 @@ func (cll *circularLinkedList) IsEmpty() bool {
 	return cll.head == nil
 }
 
-// // Print the single linked list
-// func (cll *circularLinkedList) PrintList()
+// //  Print the single linked list
+func (cll *circularLinkedList) PrintList() {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	current := cll.head
+
+	for {
+		fmt.Println("Data :", current.data)
+		current = current.next
+
+		if current == cll.head {
+			break
+		}
+	}
+}
 
 // clear the whole linked list
 func (cll *circularLinkedList) Clear() {
@@ -115,11 +133,11 @@ func (cll *circularLinkedList) Clear() {
 // */
 
 // increment after eash deletation
-func (cll *doublyLinkedList) incrementCounter() {
+func (cll *circularLinkedList) incrementCounter() {
 	cll.length++ // just increate by one
 }
 
 // decrement after eash deletation
-func (cll *doublyLinkedList) decrementCounter() {
+func (cll *circularLinkedList) decrementCounter() {
 	cll.length--
 }
