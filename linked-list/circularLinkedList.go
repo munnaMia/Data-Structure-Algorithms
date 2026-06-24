@@ -108,7 +108,7 @@ func (cll *circularLinkedList) GetTail() (any, error) {
 }
 
 // get an element of an given index and a bool status that the index exist or not
- func (cll *circularLinkedList) GetAt(index int) (*Node, any){
+func (cll *circularLinkedList) GetAt(index int) (*Node, any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil, fmt.Errorf("linked list is empty")
@@ -124,16 +124,35 @@ func (cll *circularLinkedList) GetTail() (any, error) {
 		currentNode = currentNode.next
 		counter++
 
-		if currentNode == cll.head{
+		if currentNode == cll.head {
 			break
 		}
 	}
 
 	return nil, fmt.Errorf("linked list is empty")
- }
+}
 
-// // search an element on linked list and return boolean
-// func (cll *circularLinkedList) Search(data any)  *Node
+// search an element on linked list and return boolean
+func (cll *circularLinkedList) Search(data any) (*Node, error) {
+	if cll.IsEmpty() {
+		return nil, fmt.Errorf("linked list is empty")
+	}
+
+	currentNode := cll.head
+
+	for {
+		if currentNode.data == data {
+			return currentNode, nil
+		}
+		currentNode = currentNode.next
+
+		if currentNode == cll.head {
+			break
+		}
+	}
+
+	return nil, fmt.Errorf("element not found")
+}
 
 // // Returns a simple true/false if the value is in the list.
 // func (cll *circularLinkedList) Contains(data any) bool
