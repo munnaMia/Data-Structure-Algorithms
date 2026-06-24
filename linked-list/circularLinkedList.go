@@ -41,7 +41,7 @@ func (cll *circularLinkedList) InsertAtHead(data any) {
 
 // push element on the beginning
 func (cll *circularLinkedList) InsertAtTail(data any) {
-defer cll.incrementCounter()
+	defer cll.incrementCounter()
 
 	newNode := &Node{
 		prev: cll.tail,
@@ -91,8 +91,13 @@ defer cll.incrementCounter()
 // 	Access & Search Methods ------------------------------------------------------------
 // */
 
-// // show the head node value
-// func (cll *circularLinkedList) GetHead() (any, error)
+// show the head node value
+func (cll *circularLinkedList) GetHead() (any, error) {
+	if cll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return cll.head, nil
+}
 
 // // show the tail node value
 // func (cll *circularLinkedList) GetTail() (any, error)
