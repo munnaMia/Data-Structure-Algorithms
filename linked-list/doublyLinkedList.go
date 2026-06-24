@@ -231,8 +231,26 @@ func (dll *doublyLinkedList) Delete(data any) (bool, any) {
 	return true, oldData
 }
 
-// // delete head node.
-// func (dll *doublyLinkedList) DeleteHead() (bool, any)
+// delete head node.
+func (dll *doublyLinkedList) DeleteHead() (bool, any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+	oldData := dll.head.data
+
+	if dll.length == 1 {
+		dll.head = nil
+		dll.tail = nil
+		dll.decrementCounter()
+		return true, oldData
+	}
+
+	dll.head = dll.head.next
+	dll.head.prev = nil
+	dll.decrementCounter()
+	return true, oldData
+}
 
 // // delete tail node.
 // func (dll *doublyLinkedList) DeleteTail() (bool, any)
