@@ -99,8 +99,13 @@ func (cll *circularLinkedList) GetHead() (any, error) {
 	return cll.head, nil
 }
 
-// // show the tail node value
-// func (cll *circularLinkedList) GetTail() (any, error)
+// show the tail node value
+func (cll *circularLinkedList) GetTail() (any, error) {
+	if cll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return cll.tail, nil
+}
 
 // // get an element of an given index and a bool status that the index exist or not
 // func (cll *circularLinkedList) GetAt(index int) (bool, any)
