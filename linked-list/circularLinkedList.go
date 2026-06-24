@@ -190,8 +190,54 @@ func (cll *circularLinkedList) InsertBefore(targetData any, data any) {
 // 	Deletation ------------------------------------------------------------
 // */
 
-// // delete first matched element and return the deleted element
-// func (cll *circularLinkedList) Delete(data any) (bool, any)
+// delete first matched element and return the deleted element
+func (cll *circularLinkedList) Delete(data any) (bool, any) {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+
+	targetNode, _ := cll.Search(data)
+
+	if cll.length == 1 {
+		if targetNode.data == cll.head.data {
+			oldData := cll.head.data
+			cll.head = nil
+			cll.tail = nil
+
+			cll.decrementCounter()
+			return true, oldData
+		}
+	}
+
+	if cll.head == targetNode {
+		oldData := cll.head.data
+		cll.head = cll.head.next
+		cll.tail.next = cll.head
+
+		cll.decrementCounter()
+		return true, oldData
+	}
+
+	if cll.tail == targetNode {
+		oldData := cll.tail.data
+		cll.tail = cll.tail.prev
+		cll.tail.next = cll.head
+		cll.head.prev = cll.tail
+
+		cll.decrementCounter()
+		return true, oldData
+	}
+
+	oldData := targetNode.data
+	preNode := targetNode.prev
+	postNode := targetNode.next
+
+	preNode.next = postNode
+	postNode.prev = preNode
+	cll.decrementCounter()
+	return true, oldData
+}
 
 // // delete head node.
 // func (cll *circularLinkedList) DeleteHead() (bool, any)
