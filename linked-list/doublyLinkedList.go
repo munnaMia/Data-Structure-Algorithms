@@ -277,7 +277,6 @@ func (dll *doublyLinkedList) DeleteTail() (bool, any) {
 	dll.decrementCounter()
 
 	return true, oldData
-
 }
 
 // Removes a node based on its numerical position.

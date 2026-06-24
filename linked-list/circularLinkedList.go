@@ -261,8 +261,28 @@ func (cll *circularLinkedList) DeleteHead() (bool, any) {
 	return true, oldData
 }
 
-// // delete tail node.
-// func (cll *circularLinkedList) DeleteTail() (bool, any)
+// delete tail node.
+func (cll *circularLinkedList) DeleteTail() (bool, any){
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+	oldData := cll.tail.data
+
+	if cll.length == 1 {
+		cll.head = nil
+		cll.tail = nil
+		cll.decrementCounter()
+		return true, oldData
+	}
+
+	cll.tail = cll.tail.prev
+	cll.tail.next = cll.head
+	cll.head.prev = cll.tail
+	cll.decrementCounter()
+
+	return true, oldData
+}
 
 // // Removes a node based on its numerical position.
 // func (cll *circularLinkedList) DeleteAt(index int)
