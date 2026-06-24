@@ -154,8 +154,13 @@ func (cll *circularLinkedList) Search(data any) (*Node, error) {
 	return nil, fmt.Errorf("element not found")
 }
 
-// // Returns a simple true/false if the value is in the list.
-// func (cll *circularLinkedList) Contains(data any) bool
+// Returns a simple true/false if the value is in the list.
+func (cll *circularLinkedList) Contains(data any) bool {
+	if _, err := cll.Search(data); err == nil {
+		return true
+	}
+	return false
+}
 
 // /*
 // 	Transformation Methods ------------------------------------------------------------
