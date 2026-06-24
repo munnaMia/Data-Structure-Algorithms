@@ -63,7 +63,7 @@ func (cll *circularLinkedList) InsertAtTail(data any) {
 // func (cll *circularLinkedList) InsertAt(index int, data any)
 
 // Inserts new data right after a specific existing value.
- func (cll *circularLinkedList) InsertAfter(targetData any, data any) {
+func (cll *circularLinkedList) InsertAfter(targetData any, data any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -92,10 +92,38 @@ func (cll *circularLinkedList) InsertAtTail(data any) {
 	targetNode.next = newNode
 
 	cll.incrementCounter()
- }
+}
 
-// // Inserts new data right after a specific existing value.
-// func (cll *circularLinkedList) InsertBefore(targetData any, newData any) error
+// Inserts new data right after a specific existing value.
+func (cll *circularLinkedList) InsertBefore(targetData any, data any) {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	targetNode, _ := cll.Search(targetData)
+
+	if targetNode == nil {
+		return
+	}
+
+	// insert at head
+	if cll.head == targetNode {
+		cll.InsertAtHead(data)
+		cll.incrementCounter()
+		return
+	}
+
+	newNode := &Node{
+		prev: targetNode.prev,
+		data: data,
+		next: targetNode,
+	}
+
+	targetNode.prev.next = newNode
+	targetNode.prev = newNode
+	cll.incrementCounter()
+}
 
 // /*
 // 	Deletation ------------------------------------------------------------
