@@ -62,8 +62,37 @@ func (cll *circularLinkedList) InsertAtTail(data any) {
 // // Adds a node at a specific position.
 // func (cll *circularLinkedList) InsertAt(index int, data any)
 
-// // Inserts new data right after a specific existing value.
-// func (cll *circularLinkedList) InsertAfter(targetData any, newData any) error
+// Inserts new data right after a specific existing value.
+ func (cll *circularLinkedList) InsertAfter(targetData any, data any) {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	targetNode, _ := cll.Search(targetData)
+
+	if targetNode == nil {
+		return
+	}
+
+	// insert at tail
+	if cll.tail == targetNode {
+		cll.InsertAtTail(data)
+		cll.incrementCounter()
+		return
+	}
+
+	newNode := &Node{
+		prev: targetNode,
+		data: data,
+		next: targetNode.next,
+	}
+
+	targetNode.next.prev = newNode
+	targetNode.next = newNode
+
+	cll.incrementCounter()
+ }
 
 // // Inserts new data right after a specific existing value.
 // func (cll *circularLinkedList) InsertBefore(targetData any, newData any) error
@@ -167,7 +196,7 @@ func (cll *circularLinkedList) Contains(data any) bool {
 // */
 
 // Replaces a specific value with a new one.
- func (cll *circularLinkedList) Update(data, replace any) (*Node, error) {
+func (cll *circularLinkedList) Update(data, replace any) (*Node, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -185,7 +214,7 @@ func (cll *circularLinkedList) Contains(data any) bool {
 }
 
 // reverse the linked list
- func (cll *circularLinkedList) Reverse() {
+func (cll *circularLinkedList) Reverse() {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -206,10 +235,10 @@ func (cll *circularLinkedList) Contains(data any) bool {
 
 	cll.head = tempCll.head
 	cll.tail = tempCll.tail
- }
+}
 
 // Scans the list and removes nodes with repeating values
-func (cll *circularLinkedList) RemoveDuplicates(){
+func (cll *circularLinkedList) RemoveDuplicates() {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
