@@ -471,7 +471,7 @@ func (dll *doublyLinkedList) RemoveDuplicates() {
 		fmt.Println("Linked list is empty.")
 		return
 	}
-	
+
 	seen := make(map[any]bool)
 
 	current := dll.head

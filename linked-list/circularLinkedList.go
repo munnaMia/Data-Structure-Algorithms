@@ -114,6 +114,12 @@ func (cll *circularLinkedList) Clear() {
 // 	private helper methods --------------------------------------------------------------------
 // */
 
-func (cll *circularLinkedList) incrementCounter() {
+// increment after eash deletation
+func (cll *doublyLinkedList) incrementCounter() {
 	cll.length++ // just increate by one
+}
+
+// decrement after eash deletation
+func (cll *doublyLinkedList) decrementCounter() {
+	cll.length--
 }
