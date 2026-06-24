@@ -59,8 +59,69 @@ func (cll *circularLinkedList) InsertAtTail(data any) {
 	cll.tail = newNode
 }
 
-// // Adds a node at a specific position.
-// func (cll *circularLinkedList) InsertAt(index int, data any)
+// Adds a node at a specific position.
+func (cll *circularLinkedList) InsertAt(index int, data any) {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	if index > cll.length-1 {
+		fmt.Println("index out of range")
+		return
+	}
+
+	if index == 0 {
+		newNode := &Node{
+			prev: cll.tail,
+			data: data,
+			next: cll.head,
+		}
+		cll.head.prev = newNode
+		cll.tail.next = newNode
+		cll.head = newNode
+
+		cll.incrementCounter()
+		return
+	}
+
+	counter := 1
+
+	current := cll.head.next // start from index 1
+
+	for {
+		if counter == index {
+			newNode := &Node{
+				prev: current.prev,
+				data: data,
+				next: current,
+			}
+			current.prev.next = newNode
+			current.prev = newNode
+			cll.incrementCounter()
+			return
+		}
+
+		current = current.next
+		counter++
+
+		if current == cll.head {
+			break
+		}
+	}
+
+	for counter <= index {
+		cll.tail.next = &Node{}
+		cll.tail = cll.tail.next
+		cll.incrementCounter()
+
+		if counter == index {
+			cll.tail.data = data
+			return
+		}
+		counter++
+	}
+}
 
 // Inserts new data right after a specific existing value.
 func (cll *circularLinkedList) InsertAfter(targetData any, data any) {

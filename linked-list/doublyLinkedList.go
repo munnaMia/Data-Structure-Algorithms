@@ -74,6 +74,10 @@ func (dll *doublyLinkedList) InsertAt(index int, data any) {
 		fmt.Println("Linked list is empty.")
 		return
 	}
+	if index > dll.length-1 {
+		fmt.Println("index out of range")
+		return
+	}
 
 	if index == 0 {
 		newNode := &Node{
@@ -99,6 +103,7 @@ func (dll *doublyLinkedList) InsertAt(index int, data any) {
 				next: current,
 			}
 			current.prev.next = newNode
+			current.prev = newNode
 			dll.incrementCounter()
 			return
 		}
