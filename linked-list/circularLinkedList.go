@@ -21,7 +21,23 @@ func NewCircularLinkedList() *circularLinkedList {
 // */
 
 // append element on the end on singly linked list
-func (cll *circularLinkedList) InsertAtHead(data any)
+func (cll *circularLinkedList) InsertAtHead(data any) {
+	defer cll.incrementCounter()
+
+	newNode := &Node{
+		prev: cll.tail,
+		data: data,
+		next: cll.head,
+	}
+
+	if cll.IsEmpty() {
+		cll.head = newNode
+		cll.tail = newNode
+	}
+	cll.tail.next = newNode
+	cll.head.prev = newNode
+	cll.head = newNode
+}
 
 // // push element on the beginning
 // func (cll *circularLinkedList) InsertAtTail(data any)
