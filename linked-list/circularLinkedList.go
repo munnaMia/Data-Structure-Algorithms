@@ -81,9 +81,6 @@ func NewCircularLinkedList() *circularLinkedList {
 // // reverse the linked list
 // func (cll *circularLinkedList) Reverse()
 
-// // sort the linked list
-// func (cll *circularLinkedList) Sort()
-
 // // Scans the list and removes nodes with repeating values
 // func (cll *circularLinkedList) RemoveDuplicates()
 

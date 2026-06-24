@@ -187,8 +187,49 @@ func (dll *doublyLinkedList) InsertBefore(targetData any, data any) {
 // 	Deletation ------------------------------------------------------------
 // */
 
-// // delete first matched element and return the deleted element
-// func (dll *doublyLinkedList) Delete(data any) (bool, any)
+// delete first matched element and return the deleted element
+func (dll *doublyLinkedList) Delete(data any) (bool, any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+	targetNode, _ := dll.Search(data)
+
+	if dll.length == 1 {
+		if targetNode.data == dll.head.data {
+			oldData := dll.head.data
+			dll.head = nil
+			dll.tail = nil
+			dll.decrementCounter()
+			return true, oldData
+		}
+	}
+
+	if dll.head == targetNode {
+		oldData := dll.head.data
+		dll.head = dll.head.next
+		dll.head.prev = nil
+		dll.decrementCounter()
+		return true, oldData
+	}
+
+	if dll.tail == targetNode {
+		oldData := dll.tail.data
+		dll.tail = dll.tail.prev
+		dll.tail.next = nil
+		dll.decrementCounter()
+		return true, oldData
+	}
+
+	oldData := targetNode.data
+	preNode := targetNode.prev
+	postNode := targetNode.next
+
+	preNode.next = postNode
+	postNode.prev = preNode
+	dll.decrementCounter()
+	return true, oldData
+}
 
 // // delete head node.
 // func (dll *doublyLinkedList) DeleteHead() (bool, any)
@@ -223,7 +264,7 @@ func (dll *doublyLinkedList) GetTail() (*Node, error) {
 }
 
 // get an element of an given index and a bool status that the index exist or not
-func (dll *doublyLinkedList) GetAt(index int) (*Node, any) {
+func (dll *doublyLinkedList) GetAt(index int) (*Node, error) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil, fmt.Errorf("linked list is empty")
@@ -365,6 +406,6 @@ func (dll *doublyLinkedList) incrementCounter() {
 }
 
 // decrement after eash deletation
-func (dll *singlyLinkedList) decrementCounter() {
+func (dll *doublyLinkedList) decrementCounter() {
 	dll.length--
 }

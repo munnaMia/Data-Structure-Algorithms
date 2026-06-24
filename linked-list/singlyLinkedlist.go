@@ -358,7 +358,7 @@ func (sll *singlyLinkedList) GetAt(index int) (*Node, error) {
 	return nil, fmt.Errorf("linked list is empty")
 }
 
-// // search an element on linked list and return boolean
+// search an element on linked list and return boolean
 func (sll *singlyLinkedList) Search(data any) (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("linked list is empty")
