@@ -46,7 +46,7 @@ func (dll *doublyLinkedList) InsertAtHead(data any) {
 }
 
 // push element on the end
- func (dll *doublyLinkedList) InsertAtTail(data any){
+func (dll *doublyLinkedList) InsertAtTail(data any) {
 	defer dll.incrementCounter()
 
 	if dll.IsEmpty() {
@@ -66,10 +66,59 @@ func (dll *doublyLinkedList) InsertAtHead(data any) {
 	}
 
 	dll.tail = dll.tail.next
- }
+}
 
-// // Adds a node at a specific position.
-// func (dll *doublyLinkedList) InsertAt(index int, data any)
+// Adds a node at a specific position.
+func (dll *doublyLinkedList) InsertAt(index int, data any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	if index == 0 {
+		newNode := &Node{
+			prev: nil,
+			data: data,
+			next: dll.head,
+		}
+		dll.head.prev = newNode
+		dll.head = newNode
+		dll.incrementCounter()
+		return
+	}
+
+	counter := 1
+
+	current := dll.head.next // start from index 1
+
+	for current != nil {
+		if counter == index {
+			newNode := &Node{
+				prev: current.prev,
+				data: data,
+				next: current,
+			}
+			current.prev.next = newNode
+			dll.incrementCounter()
+			return
+		}
+
+		current = current.next
+		counter++
+	}
+
+	for counter <= index {
+		dll.tail.next = &Node{}
+		dll.tail = dll.tail.next
+		dll.incrementCounter()
+
+		if counter == index {
+			dll.tail.data = data
+			return
+		}
+		counter++
+	}
+}
 
 // // Inserts new data right after a specific existing value.
 // func (dll *doublyLinkedList) InsertAfter(targetData any, newData any) error
@@ -192,9 +241,6 @@ func (dll *doublyLinkedList) Update(data, replace any) (*Node, error) {
 
 // // reverse the linked list
 // func (dll *doublyLinkedList) Reverse()
-
-// // sort the linked list
-// func (dll *doublyLinkedList) Sort()
 
 // // Scans the list and removes nodes with repeating values
 // func (dll *doublyLinkedList) RemoveDuplicates()
