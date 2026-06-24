@@ -433,7 +433,6 @@ func (dll *doublyLinkedList) Update(data, replace any) (*Node, error) {
 	}
 
 	targetNode, err := dll.Search(data)
-
 	if err != nil {
 		return nil, err
 	}

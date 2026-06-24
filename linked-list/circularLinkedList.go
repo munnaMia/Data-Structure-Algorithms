@@ -166,8 +166,23 @@ func (cll *circularLinkedList) Contains(data any) bool {
 // 	Transformation Methods ------------------------------------------------------------
 // */
 
-// // Replaces a specific value with a new one.
-// func (cll *circularLinkedList) Update(data, replace any) (bool, any)
+// Replaces a specific value with a new one.
+ func (cll *circularLinkedList) Update(data, replace any) (*Node, error) {
+	if cll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+
+	targetNode, err := cll.Search(data)
+	if err != nil {
+		return nil, err
+	}
+
+	oldData := targetNode
+
+	targetNode.data = replace
+
+	return oldData, nil
+}
 
 // // reverse the linked list
 // func (cll *circularLinkedList) Reverse()
