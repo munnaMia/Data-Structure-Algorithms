@@ -184,8 +184,29 @@ func (cll *circularLinkedList) Contains(data any) bool {
 	return oldData, nil
 }
 
-// // reverse the linked list
-// func (cll *circularLinkedList) Reverse()
+// reverse the linked list
+ func (cll *circularLinkedList) Reverse() {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	tempCll := NewCircularLinkedList()
+
+	current := cll.head
+
+	for {
+		tempCll.InsertAtHead(current.data)
+		current = current.next
+
+		if current == cll.head {
+			break
+		}
+	}
+
+	cll.head = tempCll.head
+	cll.tail = tempCll.tail
+ }
 
 // Scans the list and removes nodes with repeating values
 func (cll *circularLinkedList) RemoveDuplicates(){
