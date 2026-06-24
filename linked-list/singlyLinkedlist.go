@@ -294,7 +294,7 @@ func (sll *singlyLinkedList) DeleteAt(index int) (bool, any) {
 		current = current.next
 	}
 
-	return false, 0
+	return false, nil
 }
 
 // Keeps the first $n$ elements and deletes the rest.

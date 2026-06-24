@@ -275,8 +275,61 @@ func (dll *doublyLinkedList) DeleteTail() (bool, any) {
 
 }
 
-// // Removes a node based on its numerical position.
-// func (dll *doublyLinkedList) DeleteAt(index int)
+// Removes a node based on its numerical position.
+func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+
+	counter := 0
+
+	current := dll.head
+
+	if dll.length == 1 {
+		if counter == index {
+			oldData := dll.head.data
+			dll.head = nil
+			dll.tail = nil
+			dll.decrementCounter()
+			return true, oldData
+		}
+	}
+
+	if index == 0 {
+		oldData := dll.head.data
+		dll.head = dll.head.next
+		dll.head.prev = nil
+		dll.decrementCounter()
+		return true, oldData
+	}
+
+	if index == dll.length-1 {
+		oldData := dll.tail.data
+		dll.tail = dll.tail.prev
+		dll.tail.next = nil
+		dll.decrementCounter()
+		return true, oldData
+	}
+
+	for counter <= index {
+		if counter == index {
+			oldData := current.data
+			preNode := current.prev
+			postNode := current.next
+
+			preNode.next = postNode
+			postNode.prev = preNode
+
+			dll.decrementCounter()
+			return true, oldData
+		}
+		counter++
+		current = current.next
+	}
+
+	return false, nil
+}
 
 // // Keeps the first $n$ elements and deletes the rest.
 // func (dll *doublyLinkedList) Truncate(n int)
