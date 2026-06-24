@@ -312,7 +312,7 @@ func (sll *singlyLinkedList) Truncate(n int) error {
 		return err
 	}
 
-	sll.head = currentNode.next
+	currentNode.next = nil
 
 	return nil
 }

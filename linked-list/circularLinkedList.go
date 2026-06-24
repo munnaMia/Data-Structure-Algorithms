@@ -336,8 +336,27 @@ func (cll *circularLinkedList) DeleteAt(index int) (bool, any) {
 	return false, nil
 }
 
-// // Keeps the first $n$ elements and deletes the rest.
-// func (cll *circularLinkedList) Truncate(n int)
+// Keeps the first $n$ elements and deletes the rest.
+func (cll *circularLinkedList) Truncate(n int) error {
+	if n == 0 || n < 0 {
+		return nil
+	}
+
+	if cll.Length() < n {
+		return fmt.Errorf("not enough elements in the linked list")
+	}
+
+	currentNode, err := cll.GetAt(n - 1)
+	if err != nil {
+		return err
+	}
+
+	cll.tail = currentNode
+	cll.tail.next = cll.head
+	cll.head.prev = cll.tail
+
+	return nil
+}
 
 // /*
 // 	Access & Search Methods ------------------------------------------------------------
@@ -360,7 +379,7 @@ func (cll *circularLinkedList) GetTail() (any, error) {
 }
 
 // get an element of an given index and a bool status that the index exist or not
-func (cll *circularLinkedList) GetAt(index int) (*Node, any) {
+func (cll *circularLinkedList) GetAt(index int) (*Node, error) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil, fmt.Errorf("linked list is empty")

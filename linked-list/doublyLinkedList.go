@@ -334,7 +334,7 @@ func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
 
 // Keeps the first $n$ elements and deletes the rest.
 func (dll *doublyLinkedList) Truncate(n int) error {
-	if n == 0 {
+	if n == 0 || n < 0 {
 		return nil
 	}
 
@@ -347,7 +347,8 @@ func (dll *doublyLinkedList) Truncate(n int) error {
 		return err
 	}
 
-	dll.head = currentNode.next
+	currentNode.next = nil
+	dll.tail = currentNode
 
 	return nil
 }
