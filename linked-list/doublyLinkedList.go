@@ -331,8 +331,25 @@ func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
 	return false, nil
 }
 
-// // Keeps the first $n$ elements and deletes the rest.
-// func (dll *doublyLinkedList) Truncate(n int)
+// Keeps the first $n$ elements and deletes the rest.
+func (dll *doublyLinkedList) Truncate(n int) error {
+	if n == 0 {
+		return nil
+	}
+
+	if dll.Length() < n {
+		return fmt.Errorf("not enough elements in the linked list")
+	}
+
+	currentNode, err := dll.GetAt(n - 1)
+	if err != nil {
+		return err
+	}
+	
+	dll.head = currentNode.next
+
+	return nil
+}
 
 // /*
 // 	Access & Search Methods ------------------------------------------------------------
