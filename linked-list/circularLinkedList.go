@@ -262,7 +262,7 @@ func (cll *circularLinkedList) DeleteHead() (bool, any) {
 }
 
 // delete tail node.
-func (cll *circularLinkedList) DeleteTail() (bool, any){
+func (cll *circularLinkedList) DeleteTail() (bool, any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -284,8 +284,57 @@ func (cll *circularLinkedList) DeleteTail() (bool, any){
 	return true, oldData
 }
 
-// // Removes a node based on its numerical position.
-// func (cll *circularLinkedList) DeleteAt(index int)
+// Removes a node based on its numerical position.
+func (cll *circularLinkedList) DeleteAt(index int) (bool, any) {
+	if cll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, nil
+	}
+
+	if index > cll.length-1 {
+		fmt.Println("index out of range")
+		return false, nil
+	}
+
+	counter := 0
+
+	current := cll.head
+
+	if cll.length == 1 {
+		if counter == index {
+			oldData := cll.head.data
+			cll.head = nil
+			cll.tail = nil
+			cll.decrementCounter()
+			return true, oldData
+		}
+	}
+
+	if index == 0 {
+		return cll.DeleteHead()
+	}
+
+	if index == cll.length-1 {
+		return cll.DeleteTail()
+	}
+
+	for counter <= index {
+		if counter == index {
+			oldData := current.data
+			preNode := current.prev
+			postNode := current.next
+
+			preNode.next = postNode
+			postNode.prev = preNode
+			cll.decrementCounter()
+			return true, oldData
+		}
+		counter++
+		current = current.next
+	}
+
+	return false, nil
+}
 
 // // Keeps the first $n$ elements and deletes the rest.
 // func (cll *circularLinkedList) Truncate(n int)

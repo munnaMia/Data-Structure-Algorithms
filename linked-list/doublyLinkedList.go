@@ -286,6 +286,11 @@ func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
 		return false, 0
 	}
 
+	if index > dll.length-1 {
+		fmt.Println("index out of range")
+		return false, nil
+	}
+
 	counter := 0
 
 	current := dll.head
@@ -301,19 +306,11 @@ func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
 	}
 
 	if index == 0 {
-		oldData := dll.head.data
-		dll.head = dll.head.next
-		dll.head.prev = nil
-		dll.decrementCounter()
-		return true, oldData
+		return dll.DeleteHead()
 	}
 
 	if index == dll.length-1 {
-		oldData := dll.tail.data
-		dll.tail = dll.tail.prev
-		dll.tail.next = nil
-		dll.decrementCounter()
-		return true, oldData
+		return dll.DeleteTail()
 	}
 
 	for counter <= index {
