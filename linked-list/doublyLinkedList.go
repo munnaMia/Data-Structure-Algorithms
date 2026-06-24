@@ -359,6 +359,12 @@ func (dll *doublyLinkedList) Clear() {
 // 	private helper methods --------------------------------------------------------------------
 // */
 
+// increment after eash deletation
 func (dll *doublyLinkedList) incrementCounter() {
 	dll.length++ // just increate by one
+}
+
+// decrement after eash deletation
+func (dll *singlyLinkedList) decrementCounter() {
+	dll.length--
 }
