@@ -400,9 +400,6 @@ func (sll *singlyLinkedList) Reverse() {
 	sll.head = tempLinkedList.head
 }
 
-// sort the linked list
-// func (sll *singlyLinkedList) Sort()
-
 // Scans the list and removes nodes with repeating values
 func (sll *singlyLinkedList) RemoveDuplicates() {
 	if sll.head == nil {
@@ -485,10 +482,9 @@ func (sll *singlyLinkedList) Clear() {
 
 // increment after eash insertion
 func (sll *singlyLinkedList) incrementCounter() {
-	sll.length++ // just increate by one
+	sll.length++ 
 }
-
 // decrement after eash deletation
 func (sll *singlyLinkedList) decrementCounter() {
-	sll.length-- // just increate by one
+	sll.length-- 
 }
