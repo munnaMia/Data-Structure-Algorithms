@@ -198,8 +198,37 @@ func (sll *singlyLinkedList) DeleteHead() (bool, any) {
 	return true, oldData
 }
 
-// // delete tail node.
-// func (sll *singlyLinkedList) DeleteTail() (bool, any)
+// delete tail node.
+func (sll *singlyLinkedList) DeleteTail() (bool, any) {
+	if sll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return false, 0
+	}
+
+	current := sll.head
+	oldData := sll.tail.data
+
+	// if only one node available
+	if current == sll.tail {
+		sll.head = nil
+		sll.tail = nil
+		sll.decrementCounter()
+		return true, oldData
+	}
+
+	for current.next != nil {
+		if current.next == sll.tail {
+			current.next = nil
+			sll.tail = current
+			sll.decrementCounter()
+			return true, oldData
+		}
+
+		current = current.next
+	}
+
+	return false, 0
+}
 
 // // Removes a node based on its numerical position.
 // func (sll *singlyLinkedList) DeleteAt(index int)
