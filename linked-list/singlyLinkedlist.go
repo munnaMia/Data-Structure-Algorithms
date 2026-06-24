@@ -427,6 +427,7 @@ func (sll *singlyLinkedList) Reverse() {
 	}
 
 	sll.head = tempLinkedList.head
+	sll.tail = tempLinkedList.tail
 }
 
 // Scans the list and removes nodes with repeating values

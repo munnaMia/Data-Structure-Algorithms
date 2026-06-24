@@ -345,7 +345,7 @@ func (dll *doublyLinkedList) Truncate(n int) error {
 	if err != nil {
 		return err
 	}
-	
+
 	dll.head = currentNode.next
 
 	return nil
@@ -445,8 +445,25 @@ func (dll *doublyLinkedList) Update(data, replace any) (*Node, error) {
 	return oldData, nil
 }
 
-// // reverse the linked list
-// func (dll *doublyLinkedList) Reverse()
+// reverse the linked list
+func (dll *doublyLinkedList) Reverse() {
+	if dll.IsEmpty() {
+		fmt.Println("Linked list is empty.")
+		return
+	}
+
+	newTempLL := NewDoublyLinkedList()
+
+	current := dll.head
+
+	for current != nil {
+		newTempLL.InsertAtHead(current.data)
+		current = current.next
+	}
+
+	dll.head = newTempLL.head
+	dll.tail = newTempLL.tail
+}
 
 // // Scans the list and removes nodes with repeating values
 // func (dll *doublyLinkedList) RemoveDuplicates()
