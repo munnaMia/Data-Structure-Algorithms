@@ -164,7 +164,7 @@ func (sll *singlyLinkedList) InsertBefore(targetData any, data any) {
 	}
 
 	for current != nil {
-		if current.data == data {
+		if current.data == targetData {
 			previous.next = &Node{
 				data: data,
 				next: current,
