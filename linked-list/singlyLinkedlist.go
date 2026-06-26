@@ -4,14 +4,14 @@ import (
 	"fmt"
 )
 
-type singlyLinkedList struct {
+type SinglyLinkedList struct {
 	head   *Node
 	tail   *Node
 	length int
 }
 
-func NewSinglyLinkedList() *singlyLinkedList {
-	return &singlyLinkedList{
+func NewSinglyLinkedList() *SinglyLinkedList {
+	return &SinglyLinkedList{
 		head:   nil,
 		tail:   nil,
 		length: 0,
@@ -23,7 +23,7 @@ func NewSinglyLinkedList() *singlyLinkedList {
 */
 
 // append element on the beginning on singly linked list
-func (sll *singlyLinkedList) InsertAtHead(data any) {
+func (sll *SinglyLinkedList) InsertAtHead(data any) {
 	defer sll.incrementCounter()
 
 	newNode := &Node{
@@ -41,7 +41,7 @@ func (sll *singlyLinkedList) InsertAtHead(data any) {
 }
 
 // push element on the end
-func (sll *singlyLinkedList) InsertAtTail(data any) {
+func (sll *SinglyLinkedList) InsertAtTail(data any) {
 	defer sll.incrementCounter()
 
 	if sll.IsEmpty() {
@@ -63,7 +63,7 @@ func (sll *singlyLinkedList) InsertAtTail(data any) {
 }
 
 // Adds a node at a specific position or append empty node.
-func (sll *singlyLinkedList) InsertAt(index int, data any) {
+func (sll *SinglyLinkedList) InsertAt(index int, data any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -117,7 +117,7 @@ func (sll *singlyLinkedList) InsertAt(index int, data any) {
 }
 
 // Inserts new data right after a specific existing value. if nothing match it do nothing just like u.
-func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
+func (sll *SinglyLinkedList) InsertAfter(targetData any, data any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -144,7 +144,7 @@ func (sll *singlyLinkedList) InsertAfter(targetData any, data any) {
 }
 
 // Inserts new data right after a specific existing value.
-func (sll *singlyLinkedList) InsertBefore(targetData any, data any) {
+func (sll *SinglyLinkedList) InsertBefore(targetData any, data any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -185,7 +185,7 @@ func (sll *singlyLinkedList) InsertBefore(targetData any, data any) {
 // */
 
 // delete first matched element and return the deleted element. false mean data not exist or list is empty
-func (sll *singlyLinkedList) Delete(data any) (bool, any) {
+func (sll *SinglyLinkedList) Delete(data any) (bool, any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -217,7 +217,7 @@ func (sll *singlyLinkedList) Delete(data any) (bool, any) {
 }
 
 // delete head node.
-func (sll *singlyLinkedList) DeleteHead() (bool, any) {
+func (sll *SinglyLinkedList) DeleteHead() (bool, any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -230,7 +230,7 @@ func (sll *singlyLinkedList) DeleteHead() (bool, any) {
 }
 
 // delete tail node.
-func (sll *singlyLinkedList) DeleteTail() (bool, any) {
+func (sll *SinglyLinkedList) DeleteTail() (bool, any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -262,7 +262,7 @@ func (sll *singlyLinkedList) DeleteTail() (bool, any) {
 }
 
 // Removes a node based on its numerical position.
-func (sll *singlyLinkedList) DeleteAt(index int) (bool, any) {
+func (sll *SinglyLinkedList) DeleteAt(index int) (bool, any) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -298,7 +298,7 @@ func (sll *singlyLinkedList) DeleteAt(index int) (bool, any) {
 }
 
 // Keeps the first $n$ elements and deletes the rest.
-func (sll *singlyLinkedList) Truncate(n int) error {
+func (sll *SinglyLinkedList) Truncate(n int) error {
 	if n == 0 {
 		return nil
 	}
@@ -322,7 +322,7 @@ func (sll *singlyLinkedList) Truncate(n int) error {
 // */
 
 // show the head node value
-func (sll *singlyLinkedList) GetHead() (*Node, error) {
+func (sll *SinglyLinkedList) GetHead() (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -330,7 +330,7 @@ func (sll *singlyLinkedList) GetHead() (*Node, error) {
 }
 
 // show the tail node value
-func (sll *singlyLinkedList) GetTail() (*Node, error) {
+func (sll *SinglyLinkedList) GetTail() (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -338,7 +338,7 @@ func (sll *singlyLinkedList) GetTail() (*Node, error) {
 }
 
 // get an node by index
-func (sll *singlyLinkedList) GetAt(index int) (*Node, error) {
+func (sll *SinglyLinkedList) GetAt(index int) (*Node, error) {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil, fmt.Errorf("linked list is empty")
@@ -359,7 +359,7 @@ func (sll *singlyLinkedList) GetAt(index int) (*Node, error) {
 }
 
 // search an element on linked list and return boolean
-func (sll *singlyLinkedList) Search(data any) (*Node, error) {
+func (sll *SinglyLinkedList) Search(data any) (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("linked list is empty")
 	}
@@ -377,7 +377,7 @@ func (sll *singlyLinkedList) Search(data any) (*Node, error) {
 }
 
 // Returns a simple true/false if the value is in the list.
-func (sll *singlyLinkedList) Contains(data any) bool {
+func (sll *SinglyLinkedList) Contains(data any) bool {
 	_, err := sll.Search(data)
 
 	if err != nil {
@@ -392,7 +392,7 @@ func (sll *singlyLinkedList) Contains(data any) bool {
 */
 
 // Replaces a specific value with a new one.
-func (sll *singlyLinkedList) Update(data, replace any) (*Node, error) {
+func (sll *SinglyLinkedList) Update(data, replace any) (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -411,7 +411,7 @@ func (sll *singlyLinkedList) Update(data, replace any) (*Node, error) {
 }
 
 // reverse the linked list
-func (sll *singlyLinkedList) Reverse() {
+func (sll *SinglyLinkedList) Reverse() {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -431,7 +431,7 @@ func (sll *singlyLinkedList) Reverse() {
 }
 
 // Scans the list and removes nodes with repeating values
-func (sll *singlyLinkedList) RemoveDuplicates() {
+func (sll *SinglyLinkedList) RemoveDuplicates() {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -455,7 +455,7 @@ func (sll *singlyLinkedList) RemoveDuplicates() {
 }
 
 // covert the linked list into slice
-func (sll *singlyLinkedList) ToSlice() []any {
+func (sll *SinglyLinkedList) ToSlice() []any {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return []any{}
@@ -477,17 +477,17 @@ func (sll *singlyLinkedList) ToSlice() []any {
 */
 
 // tell how many element the linked list have
-func (sll *singlyLinkedList) Length() int {
+func (sll *SinglyLinkedList) Length() int {
 	return sll.length
 }
 
 // check the linked list is empty or not
-func (sll *singlyLinkedList) IsEmpty() bool {
+func (sll *SinglyLinkedList) IsEmpty() bool {
 	return sll.head == nil
 }
 
 // Print the single linked list
-func (sll *singlyLinkedList) PrintList() {
+func (sll *SinglyLinkedList) PrintList() {
 	if sll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -502,7 +502,7 @@ func (sll *singlyLinkedList) PrintList() {
 }
 
 // clear the whole linked list
-func (sll *singlyLinkedList) Clear() {
+func (sll *SinglyLinkedList) Clear() {
 	sll.head = nil
 	sll.tail = nil
 }
@@ -512,11 +512,11 @@ func (sll *singlyLinkedList) Clear() {
 */
 
 // increment after eash insertion
-func (sll *singlyLinkedList) incrementCounter() {
+func (sll *SinglyLinkedList) incrementCounter() {
 	sll.length++
 }
 
 // decrement after eash deletation
-func (sll *singlyLinkedList) decrementCounter() {
+func (sll *SinglyLinkedList) decrementCounter() {
 	sll.length--
 }

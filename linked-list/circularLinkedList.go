@@ -2,14 +2,14 @@ package linkedlist
 
 import "fmt"
 
-type circularLinkedList struct {
+type CircularLinkedList struct {
 	head   *Node
 	tail   *Node
 	length int
 }
 
-func NewCircularLinkedList() *circularLinkedList {
-	return &circularLinkedList{
+func NewCircularLinkedList() *CircularLinkedList {
+	return &CircularLinkedList{
 		head:   nil,
 		tail:   nil,
 		length: 0,
@@ -21,7 +21,7 @@ func NewCircularLinkedList() *circularLinkedList {
 // */
 
 // append element on the end on singly linked list
-func (cll *circularLinkedList) InsertAtHead(data any) {
+func (cll *CircularLinkedList) InsertAtHead(data any) {
 	defer cll.incrementCounter()
 
 	newNode := &Node{
@@ -40,7 +40,7 @@ func (cll *circularLinkedList) InsertAtHead(data any) {
 }
 
 // push element on the beginning
-func (cll *circularLinkedList) InsertAtTail(data any) {
+func (cll *CircularLinkedList) InsertAtTail(data any) {
 	defer cll.incrementCounter()
 
 	newNode := &Node{
@@ -60,7 +60,7 @@ func (cll *circularLinkedList) InsertAtTail(data any) {
 }
 
 // Adds a node at a specific position.
-func (cll *circularLinkedList) InsertAt(index int, data any) {
+func (cll *CircularLinkedList) InsertAt(index int, data any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -124,7 +124,7 @@ func (cll *circularLinkedList) InsertAt(index int, data any) {
 }
 
 // Inserts new data right after a specific existing value.
-func (cll *circularLinkedList) InsertAfter(targetData any, data any) {
+func (cll *CircularLinkedList) InsertAfter(targetData any, data any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -156,7 +156,7 @@ func (cll *circularLinkedList) InsertAfter(targetData any, data any) {
 }
 
 // Inserts new data right after a specific existing value.
-func (cll *circularLinkedList) InsertBefore(targetData any, data any) {
+func (cll *CircularLinkedList) InsertBefore(targetData any, data any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -191,7 +191,7 @@ func (cll *circularLinkedList) InsertBefore(targetData any, data any) {
 // */
 
 // delete first matched element and return the deleted element
-func (cll *circularLinkedList) Delete(data any) (bool, any) {
+func (cll *CircularLinkedList) Delete(data any) (bool, any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -240,7 +240,7 @@ func (cll *circularLinkedList) Delete(data any) (bool, any) {
 }
 
 // delete head node.
-func (cll *circularLinkedList) DeleteHead() (bool, any) {
+func (cll *CircularLinkedList) DeleteHead() (bool, any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -262,7 +262,7 @@ func (cll *circularLinkedList) DeleteHead() (bool, any) {
 }
 
 // delete tail node.
-func (cll *circularLinkedList) DeleteTail() (bool, any) {
+func (cll *CircularLinkedList) DeleteTail() (bool, any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -285,7 +285,7 @@ func (cll *circularLinkedList) DeleteTail() (bool, any) {
 }
 
 // Removes a node based on its numerical position.
-func (cll *circularLinkedList) DeleteAt(index int) (bool, any) {
+func (cll *CircularLinkedList) DeleteAt(index int) (bool, any) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, nil
@@ -337,7 +337,7 @@ func (cll *circularLinkedList) DeleteAt(index int) (bool, any) {
 }
 
 // Keeps the first $n$ elements and deletes the rest.
-func (cll *circularLinkedList) Truncate(n int) error {
+func (cll *CircularLinkedList) Truncate(n int) error {
 	if n == 0 || n < 0 {
 		return nil
 	}
@@ -363,7 +363,7 @@ func (cll *circularLinkedList) Truncate(n int) error {
 // */
 
 // show the head node value
-func (cll *circularLinkedList) GetHead() (any, error) {
+func (cll *CircularLinkedList) GetHead() (any, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -371,7 +371,7 @@ func (cll *circularLinkedList) GetHead() (any, error) {
 }
 
 // show the tail node value
-func (cll *circularLinkedList) GetTail() (any, error) {
+func (cll *CircularLinkedList) GetTail() (any, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -379,7 +379,7 @@ func (cll *circularLinkedList) GetTail() (any, error) {
 }
 
 // get an element of an given index and a bool status that the index exist or not
-func (cll *circularLinkedList) GetAt(index int) (*Node, error) {
+func (cll *CircularLinkedList) GetAt(index int) (*Node, error) {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil, fmt.Errorf("linked list is empty")
@@ -404,7 +404,7 @@ func (cll *circularLinkedList) GetAt(index int) (*Node, error) {
 }
 
 // search an element on linked list and return boolean
-func (cll *circularLinkedList) Search(data any) (*Node, error) {
+func (cll *CircularLinkedList) Search(data any) (*Node, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("linked list is empty")
 	}
@@ -426,7 +426,7 @@ func (cll *circularLinkedList) Search(data any) (*Node, error) {
 }
 
 // Returns a simple true/false if the value is in the list.
-func (cll *circularLinkedList) Contains(data any) bool {
+func (cll *CircularLinkedList) Contains(data any) bool {
 	if _, err := cll.Search(data); err == nil {
 		return true
 	}
@@ -438,7 +438,7 @@ func (cll *circularLinkedList) Contains(data any) bool {
 // */
 
 // Replaces a specific value with a new one.
-func (cll *circularLinkedList) Update(data, replace any) (*Node, error) {
+func (cll *CircularLinkedList) Update(data, replace any) (*Node, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -456,7 +456,7 @@ func (cll *circularLinkedList) Update(data, replace any) (*Node, error) {
 }
 
 // reverse the linked list
-func (cll *circularLinkedList) Reverse() {
+func (cll *CircularLinkedList) Reverse() {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -480,7 +480,7 @@ func (cll *circularLinkedList) Reverse() {
 }
 
 // Scans the list and removes nodes with repeating values
-func (cll *circularLinkedList) RemoveDuplicates() {
+func (cll *CircularLinkedList) RemoveDuplicates() {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -510,7 +510,7 @@ func (cll *circularLinkedList) RemoveDuplicates() {
 }
 
 // covert the linked list into slice
-func (cll *circularLinkedList) ToSlice() []any {
+func (cll *CircularLinkedList) ToSlice() []any {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil
@@ -536,17 +536,17 @@ func (cll *circularLinkedList) ToSlice() []any {
 // */
 
 // tell how many element the linked list have
-func (cll *circularLinkedList) Length() int {
+func (cll *CircularLinkedList) Length() int {
 	return cll.length
 }
 
 // check the linked list is empty or not
-func (cll *circularLinkedList) IsEmpty() bool {
+func (cll *CircularLinkedList) IsEmpty() bool {
 	return cll.head == nil
 }
 
 // Print the single linked list
-func (cll *circularLinkedList) PrintList() {
+func (cll *CircularLinkedList) PrintList() {
 	if cll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -565,7 +565,7 @@ func (cll *circularLinkedList) PrintList() {
 }
 
 // clear the whole linked list
-func (cll *circularLinkedList) Clear() {
+func (cll *CircularLinkedList) Clear() {
 	cll.head = nil
 	cll.tail = nil
 }
@@ -575,11 +575,11 @@ func (cll *circularLinkedList) Clear() {
 // */
 
 // increment after eash deletation
-func (cll *circularLinkedList) incrementCounter() {
+func (cll *CircularLinkedList) incrementCounter() {
 	cll.length++ // just increate by one
 }
 
 // decrement after eash deletation
-func (cll *circularLinkedList) decrementCounter() {
+func (cll *CircularLinkedList) decrementCounter() {
 	cll.length--
 }

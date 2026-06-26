@@ -4,14 +4,14 @@ import (
 	"fmt"
 )
 
-type doublyLinkedList struct {
+type DoublyLinkedList struct {
 	head   *Node
 	tail   *Node
 	length int
 }
 
-func NewDoublyLinkedList() *doublyLinkedList {
-	return &doublyLinkedList{
+func NewDoublyLinkedList() *DoublyLinkedList {
+	return &DoublyLinkedList{
 		head:   nil,
 		tail:   nil,
 		length: 0,
@@ -23,7 +23,7 @@ func NewDoublyLinkedList() *doublyLinkedList {
 // */
 
 // append element on the beginning on singly linked list
-func (dll *doublyLinkedList) InsertAtHead(data any) {
+func (dll *DoublyLinkedList) InsertAtHead(data any) {
 	defer dll.incrementCounter()
 
 	// create a new node
@@ -46,7 +46,7 @@ func (dll *doublyLinkedList) InsertAtHead(data any) {
 }
 
 // push element on the end
-func (dll *doublyLinkedList) InsertAtTail(data any) {
+func (dll *DoublyLinkedList) InsertAtTail(data any) {
 	defer dll.incrementCounter()
 
 	if dll.IsEmpty() {
@@ -69,7 +69,7 @@ func (dll *doublyLinkedList) InsertAtTail(data any) {
 }
 
 // Adds a node at a specific position.
-func (dll *doublyLinkedList) InsertAt(index int, data any) {
+func (dll *DoublyLinkedList) InsertAt(index int, data any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -126,7 +126,7 @@ func (dll *doublyLinkedList) InsertAt(index int, data any) {
 }
 
 // Inserts new data right after a specific existing value.
-func (dll *doublyLinkedList) InsertAfter(targetData any, data any) {
+func (dll *DoublyLinkedList) InsertAfter(targetData any, data any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -158,7 +158,7 @@ func (dll *doublyLinkedList) InsertAfter(targetData any, data any) {
 }
 
 // Inserts new data right before a specific existing value.
-func (dll *doublyLinkedList) InsertBefore(targetData any, data any) {
+func (dll *DoublyLinkedList) InsertBefore(targetData any, data any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -193,7 +193,7 @@ func (dll *doublyLinkedList) InsertBefore(targetData any, data any) {
 // */
 
 // delete first matched element and return the deleted element
-func (dll *doublyLinkedList) Delete(data any) (bool, any) {
+func (dll *DoublyLinkedList) Delete(data any) (bool, any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -237,7 +237,7 @@ func (dll *doublyLinkedList) Delete(data any) (bool, any) {
 }
 
 // delete head node.
-func (dll *doublyLinkedList) DeleteHead() (bool, any) {
+func (dll *DoublyLinkedList) DeleteHead() (bool, any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -258,7 +258,7 @@ func (dll *doublyLinkedList) DeleteHead() (bool, any) {
 }
 
 // delete tail node.
-func (dll *doublyLinkedList) DeleteTail() (bool, any) {
+func (dll *DoublyLinkedList) DeleteTail() (bool, any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -280,7 +280,7 @@ func (dll *doublyLinkedList) DeleteTail() (bool, any) {
 }
 
 // Removes a node based on its numerical position.
-func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
+func (dll *DoublyLinkedList) DeleteAt(index int) (bool, any) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return false, 0
@@ -333,7 +333,7 @@ func (dll *doublyLinkedList) DeleteAt(index int) (bool, any) {
 }
 
 // Keeps the first $n$ elements and deletes the rest.
-func (dll *doublyLinkedList) Truncate(n int) error {
+func (dll *DoublyLinkedList) Truncate(n int) error {
 	if n == 0 || n < 0 {
 		return nil
 	}
@@ -358,7 +358,7 @@ func (dll *doublyLinkedList) Truncate(n int) error {
 // */
 
 // show the head node value
-func (dll *doublyLinkedList) GetHead() (*Node, error) {
+func (dll *DoublyLinkedList) GetHead() (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -366,7 +366,7 @@ func (dll *doublyLinkedList) GetHead() (*Node, error) {
 }
 
 // show the tail node value
-func (dll *doublyLinkedList) GetTail() (*Node, error) {
+func (dll *DoublyLinkedList) GetTail() (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -374,7 +374,7 @@ func (dll *doublyLinkedList) GetTail() (*Node, error) {
 }
 
 // get an element of an given index and a bool status that the index exist or not
-func (dll *doublyLinkedList) GetAt(index int) (*Node, error) {
+func (dll *DoublyLinkedList) GetAt(index int) (*Node, error) {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return nil, fmt.Errorf("linked list is empty")
@@ -396,7 +396,7 @@ func (dll *doublyLinkedList) GetAt(index int) (*Node, error) {
 }
 
 // search an element on linked list and return boolean
-func (dll *doublyLinkedList) Search(data any) (*Node, error) {
+func (dll *DoublyLinkedList) Search(data any) (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("linked list is empty")
 	}
@@ -414,7 +414,7 @@ func (dll *doublyLinkedList) Search(data any) (*Node, error) {
 }
 
 // Returns a simple true/false if the value is in the list.
-func (dll *doublyLinkedList) Contains(data any) bool {
+func (dll *DoublyLinkedList) Contains(data any) bool {
 	_, err := dll.Search(data)
 
 	if err != nil {
@@ -429,7 +429,7 @@ func (dll *doublyLinkedList) Contains(data any) bool {
 // */
 
 // Replaces a specific value with a new one.
-func (dll *doublyLinkedList) Update(data, replace any) (*Node, error) {
+func (dll *DoublyLinkedList) Update(data, replace any) (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
@@ -447,7 +447,7 @@ func (dll *doublyLinkedList) Update(data, replace any) (*Node, error) {
 }
 
 // reverse the linked list
-func (dll *doublyLinkedList) Reverse() {
+func (dll *DoublyLinkedList) Reverse() {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -467,7 +467,7 @@ func (dll *doublyLinkedList) Reverse() {
 }
 
 // Scans the list and removes nodes with repeating values
-func (dll *doublyLinkedList) RemoveDuplicates() {
+func (dll *DoublyLinkedList) RemoveDuplicates() {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -490,7 +490,7 @@ func (dll *doublyLinkedList) RemoveDuplicates() {
 }
 
 // covert the linked list into slice
-func (dll *doublyLinkedList) ToSlice() []any {
+func (dll *DoublyLinkedList) ToSlice() []any {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return []any{}
@@ -512,17 +512,17 @@ func (dll *doublyLinkedList) ToSlice() []any {
 // */
 
 // tell how many element the linked list have
-func (dll *doublyLinkedList) Length() int {
+func (dll *DoublyLinkedList) Length() int {
 	return dll.length
 }
 
 // check the linked list is empty or not
-func (dll *doublyLinkedList) IsEmpty() bool {
+func (dll *DoublyLinkedList) IsEmpty() bool {
 	return dll.head == nil
 }
 
 // Print the single linked list
-func (dll *doublyLinkedList) PrintList() {
+func (dll *DoublyLinkedList) PrintList() {
 	if dll.IsEmpty() {
 		fmt.Println("Linked list is empty.")
 		return
@@ -537,7 +537,7 @@ func (dll *doublyLinkedList) PrintList() {
 }
 
 // clear the whole linked list
-func (dll *doublyLinkedList) Clear() {
+func (dll *DoublyLinkedList) Clear() {
 	dll.head = nil
 	dll.tail = nil
 }
@@ -547,11 +547,11 @@ func (dll *doublyLinkedList) Clear() {
 // */
 
 // increment after eash deletation
-func (dll *doublyLinkedList) incrementCounter() {
+func (dll *DoublyLinkedList) incrementCounter() {
 	dll.length++ // just increate by one
 }
 
 // decrement after eash deletation
-func (dll *doublyLinkedList) decrementCounter() {
+func (dll *DoublyLinkedList) decrementCounter() {
 	dll.length--
 }
