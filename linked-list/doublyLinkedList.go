@@ -357,7 +357,7 @@ func (dll *DoublyLinkedList) Truncate(n int) error {
 // 	Access & Search Methods ------------------------------------------------------------
 // */
 
-// show the head node value
+// show the head node
 func (dll *DoublyLinkedList) GetHead() (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
@@ -365,12 +365,28 @@ func (dll *DoublyLinkedList) GetHead() (*Node, error) {
 	return dll.head, nil
 }
 
-// show the tail node value
+// show the head node value
+func (dll *DoublyLinkedList) GetHeadData() (any, error) {
+	if dll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return dll.head.data, nil
+}
+
+// show the tail node
 func (dll *DoublyLinkedList) GetTail() (*Node, error) {
 	if dll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
 	return dll.tail, nil
+}
+
+// show the tail node value
+func (dll *DoublyLinkedList) GetTailData() (any, error) {
+	if dll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return dll.tail.data, nil
 }
 
 // get an element of an given index and a bool status that the index exist or not

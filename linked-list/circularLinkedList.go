@@ -362,20 +362,36 @@ func (cll *CircularLinkedList) Truncate(n int) error {
 // 	Access & Search Methods ------------------------------------------------------------
 // */
 
-// show the head node value
-func (cll *CircularLinkedList) GetHead() (any, error) {
+// show the head node
+func (cll *CircularLinkedList) GetHead() (*Node, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
 	return cll.head, nil
 }
 
-// show the tail node value
-func (cll *CircularLinkedList) GetTail() (any, error) {
+// show the tail node
+func (cll *CircularLinkedList) GetTail() (*Node, error) {
 	if cll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
 	return cll.tail, nil
+}
+
+// show the head node value
+func (cll *CircularLinkedList) GetHeadData() (any, error) {
+	if cll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return cll.head.data, nil
+}
+
+// show the tail node value
+func (cll *CircularLinkedList) GetTailData() (any, error) {
+	if cll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return cll.tail.data, nil
 }
 
 // get an element of an given index and a bool status that the index exist or not

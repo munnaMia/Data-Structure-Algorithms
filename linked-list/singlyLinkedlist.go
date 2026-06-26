@@ -329,12 +329,28 @@ func (sll *SinglyLinkedList) GetHead() (*Node, error) {
 	return sll.head, nil
 }
 
-// show the tail node value
+// show the head node value
+func (sll *SinglyLinkedList) GetHeadData() (any, error) {
+	if sll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return sll.head.data, nil
+}
+
+// show the tail node
 func (sll *SinglyLinkedList) GetTail() (*Node, error) {
 	if sll.IsEmpty() {
 		return nil, fmt.Errorf("Linked list is empty.")
 	}
 	return sll.tail, nil
+}
+
+// show the tail node value
+func (sll *SinglyLinkedList) GetTailData() (any, error) {
+	if sll.IsEmpty() {
+		return nil, fmt.Errorf("Linked list is empty.")
+	}
+	return sll.tail.data, nil
 }
 
 // get an node by index
