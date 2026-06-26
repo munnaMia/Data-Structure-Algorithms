@@ -59,3 +59,8 @@ func (q *Queue) IsEmpty() bool {
 func (q *Queue) Clear() {
 	q.doubleLL.Clear()
 }
+
+// Show stack is empty or not
+func (st *Queue) Size() int {
+	return st.doubleLL.Length()
+}

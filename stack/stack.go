@@ -46,7 +46,7 @@ func (st *Stack) Peek() any {
 		fmt.Println("Stack is empty.")
 		return nil
 	}
-	
+
 	data, _ := st.singleLL.GetTailData()
 	return data
 }
@@ -59,4 +59,9 @@ func (st *Stack) Clear() {
 // Show stack is empty or not
 func (st *Stack) IsEmpty() bool {
 	return st.singleLL.IsEmpty()
+}
+
+// Show stack is empty or not
+func (st *Stack) Sizz() int {
+	return st.singleLL.Length()
 }

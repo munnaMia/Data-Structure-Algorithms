@@ -15,6 +15,28 @@
 - `Doubly` linked list
 - `Circular` linked list
 
+## Math
+
+- `Factorial` of a number
+
+## Stack
+
+- `Push` method
+- `Pop` method
+- `Peek` method
+- `IsEmpty` method
+- `IsFull` method
+- `Size` method
+
+## Queue
+
+- `Enqueue` method
+- `Dequeue` method
+- `Peek` method
+- `IsEmpty` method
+- `IsFull` method
+- `Size` method
+
 ## Searching
 
 - `Linear` search
