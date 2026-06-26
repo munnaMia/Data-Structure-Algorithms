@@ -22,31 +22,31 @@ func (st *Stack) Push(data any) any {
 }
 
 // Remove an element from the stack
-func (st *Stack) Pop() {
-
+func (st *Stack) Pop() any{
+	if st.IsEmpty() {
+		return nil
+	}
+	_, data := st.singleLL.DeleteTail()
+	return data
 }
 
 // Print the stack
-func (st *Stack) Print(){
+func (st *Stack) Print() {
 	st.singleLL.PrintList()
 }
 
 // Return the top element of the stack
-func (st *Stack) Peek() {
-
+func (st *Stack) Peek() any {
+	data, _ := st.singleLL.GetTailData()
+	return data
 }
 
 // Remove all element from the stack
 func (st *Stack) Clear() {
-
+	st.singleLL.Clear()
 }
 
 // Show stack is empty or not
-func (st *Stack) IsEmpty() {
-
-}
-
-// Show stack is full or not
-func (st *Stack) IsFull() {
-
+func (st *Stack) IsEmpty() bool{
+	return st.singleLL.IsEmpty()
 }
