@@ -1,6 +1,10 @@
 package stack
 
-import linkedlist "github.com/munnaMia/Data-Structure-Algorithms/linked-list"
+import (
+	"fmt"
+
+	linkedlist "github.com/munnaMia/Data-Structure-Algorithms/linked-list"
+)
 
 type Stack struct {
 	singleLL *linkedlist.SinglyLinkedList
@@ -22,8 +26,9 @@ func (st *Stack) Push(data any) any {
 }
 
 // Remove an element from the stack
-func (st *Stack) Pop() any{
+func (st *Stack) Pop() any {
 	if st.IsEmpty() {
+		fmt.Println("Stack is empty.")
 		return nil
 	}
 	_, data := st.singleLL.DeleteTail()
@@ -37,6 +42,11 @@ func (st *Stack) Print() {
 
 // Return the top element of the stack
 func (st *Stack) Peek() any {
+	if st.IsEmpty() {
+		fmt.Println("Stack is empty.")
+		return nil
+	}
+	
 	data, _ := st.singleLL.GetTailData()
 	return data
 }
@@ -47,6 +57,6 @@ func (st *Stack) Clear() {
 }
 
 // Show stack is empty or not
-func (st *Stack) IsEmpty() bool{
+func (st *Stack) IsEmpty() bool {
 	return st.singleLL.IsEmpty()
 }
